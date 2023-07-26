@@ -74,12 +74,16 @@ export const createBuild = async (
 
 // Query the api every 5 seconds until the build is complete.
 export const watchBuild = async (
-  url: string
+  path: string
 ): Promise<void> => {
   const apiKey = core.getInput('api_key');
 
-  let resJSON: LogsResponse;
+  let resJSON: LogsResponse[];
+  let since: string = "";
+  let url: string;
   do {
+    url = (since) ? `${baseUrl}${path}?since=${since}` : `${baseUrl}${path}`;
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -94,7 +98,11 @@ export const watchBuild = async (
     }
 
     resJSON = await response.json();
-    core.info(resJSON.data);
+
+    resJSON.forEach((log) => {
+      core.info(log.data);
+      since = log.createdAt;
+    });
     await new Promise((resolve) => setTimeout(resolve, 5000));
-  } while (!buildEndedStatuses.includes(resJSON.status));
+  } while (!buildEndedStatuses.includes(resJSON[resJSON.length-1].status));
 };
