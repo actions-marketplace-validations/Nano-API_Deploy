@@ -1,15 +1,14 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+import * as core from '@actions/core';
+
+import * as apiService from './api.service';
 
 async function run() {
   try {
-    const myInput = core.getInput('myInput');
-    core.debug(`Hello ${myInput} from inside a container`);
-
-    // Get github context data
-    const context = github.context;
-    console.log(`We can even get context data, like the repo: ${context.repo.repo}`)
-  } catch (error) {
+    const buildInput = await apiService.getBuildInput();
+    const watchUrl = await apiService.createBuild(buildInput);
+    await apiService.watchBuild(watchUrl);
+  } catch (error: any) {
+    core.error(error.message);
     core.setFailed(error.message);
   }
 }

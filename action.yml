@@ -1,10 +1,13 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: 'Nano API Build and Deploy Action'
+description: 'Builds a new version of the Nano API and deploys it to the org, streaming the build logs to the action output'
+author: 'Nano-API'
 inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  api_key:
+    description: 'API key for the org, obtained from the Nano API frontend'
+    required: true
+  token:
+    description: 'Github token, specified via ${{ secrets.GITHUB_TOKEN }}'
+    required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node16'
+  main: 'index.ts'

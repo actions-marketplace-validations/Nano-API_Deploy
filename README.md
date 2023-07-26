@@ -1,5 +1,11 @@
-# Container Action Template
+# Nano-API/Deploy
 
-To get started, click the `Use this template` button on this repository [which will create a new repository based on this template](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/).
+GitHub Action for starting a Nano API build and deploying your code as a swarm of serverless functions.
 
-For info on how to build your first Container action using the toolkit, see the [toolkit docs folder](https://github.com/actions/toolkit/blob/master/docs).
+## Usage
+
+Create a workflow (e.g. `.github/workflows/deploy.yml`) with the following content:
+
+```yaml
+name: Deploy
+
