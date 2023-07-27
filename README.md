@@ -32,3 +32,17 @@ jobs:
 ### `api_key`
 
 **Optional** The Nano API key to use for authentication. To get this, visit the [Nano API dashboard](https:/app./nanoapi.io) and create a new API key.
+
+# Developing
+
+## Building for Local Dev
+
+To build the action for local development, run `npm run build`. This will create a `dist` folder containing the distributable code.
+
+## Testing
+
+To run the tests, run `npm test`.
+
+## Releasing
+
+To release a new version, run `npm run release`. This will create a new tree-shaken build using `@vercel/ncc`. You will then need to maunally tag the release and push the tag to GitHub. GitHub Actions will then automatically publish the new release to the GitHub Marketplace.

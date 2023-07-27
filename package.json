@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "prettier --write src/*.ts",
-    "test": "jest"
+    "test": "jest",
+    "release": "npx @vercel/ncc build src/main.ts -o lib --license LICENSE"
   },
   "repository": {
     "type": "git",
