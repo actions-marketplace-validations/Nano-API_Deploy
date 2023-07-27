@@ -9,5 +9,5 @@ inputs:
     description: 'Github token, specified via ${{ secrets.GITHUB_TOKEN }}'
     required: true
 runs:
-  using: 'node16'
-  main: 'index.ts'
+  using: 'node18'
+  main: 'lib/index.js'
